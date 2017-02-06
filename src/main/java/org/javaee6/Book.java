@@ -15,7 +15,8 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "findAllBooks", query = "SELECT b FROM Book b ORDER BY b.id DESC")
+        @NamedQuery(name = "findAllBooks", query = "SELECT b FROM Book b ORDER BY b.id DESC"),
+        @NamedQuery(name = "findAllScifiBooks", query = "SELECT b FROM Book b WHERE b.tags = 'scifi' ORDER BY b.id DESC")
 })
 public class Book {
     // ======================================
@@ -34,10 +35,12 @@ public class Book {
     private Boolean illustrations;
     private String contentLanguage;
 
+    @ElementCollection
+    @CollectionTable(name="tags")
     List<String> tags = new ArrayList<String>();
 
     // ======================================
-    // =             Constructors             =
+    // =             Constructors           =
     // ======================================
 
     public Book() {

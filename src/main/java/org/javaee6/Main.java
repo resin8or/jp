@@ -68,6 +68,13 @@ public class Main {
             System.out.println("==> " + b);
         }
 
+        System.out.println("\n====== All Scifi books");
+        books = em.createNamedQuery("findAllScifiBooks").getResultList();
+        for (int i = 0; i < books.size(); i++) {
+            Book b = books.get(i);
+            System.out.println("==> " + b);
+        }
+        
         em.close();
         emf.close();
     }    
